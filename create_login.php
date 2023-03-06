@@ -1,29 +1,44 @@
 <?php
    
-  $year = $_POST['year']; 
+  $name = $_POST['name'];
+  $password = $_POST['password'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $type = $_POST['usertype'];
+  $grade = $_POST['grade'];
  
   $myconnection = mysqli_connect('localhost', 'root', '') 
     or die ('Could not connect: ' . mysql_error());
 
-  $mydb = mysqli_select_db ($myconnection, 'movie') or die ('Could not select database');
+  $mydb = mysqli_select_db ($myconnection, 'db2') or die ('Could not select database');
 
-  $query = 'SELECT DISTINCT title, length FROM movies WHERE year = ' . $year;
+  $query = 'SELECT COUNT(*) as count FROM users WHERE email = ' . "'$email'";
   $result = mysqli_query($myconnection, $query) or die ('Query failed: ' . mysql_error());
+  $count = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-  echo 'Title &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Length &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Year<br>';
+  if($count['count'] > 0) {
+    die ('Users must have a unique email.' . $count['count']);
+  }
+  echo $type;
 
-  while ($row = mysqli_fetch_array ($result, MYSQLI_ASSOC)) {    
-    echo $row["title"];
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    echo $row["length"];
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    echo $year;
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    echo '<br>';
-    echo '<td align="left"><input type="text" name="year" size="4" maxlength="4" value="'.$year.'"/></td>';
+  $Uid_query = 'SELECT MAX(id) as count FROM users';
+  $Uid_result = mysqli_query($myconnection, $Uid_query) or die('Query failed: ' . mysql_error());
+  $Uid = mysqli_fetch_array($Uid_result, MYSQLI_ASSOC);
+  $Uid['count'] += 1;
+
+  $insert = 'INSERT INTO users VALUES ('.$Uid['count'].', "'.$email.'", "'.$password.'", "'.$name.'", '.$phone.')';
+  mysqli_query($myconnection, $insert) or die('Query failed: ' . mysql_error());
+
+  if($type === 'student') {
+    $newStudent = 'INSERT INTO students VALUES ('.$Uid['count'].', '.$grade.')';
+    mysqli_query($myconnection, $newStudent) or die('Query failed' . mysql_error());
+  } elseif ($type === "parent") {
+    $newParent = 'INSERT INTO parents VALUES('.$Uid['count'].')';
+    mysqli_query($myconnection, $newParent) or die('Query failed' . mysql_error());
   }
 
   mysqli_free_result($result);
+  mysqli_free_result($Uid_result);
 
   mysqli_close($myconnection);
 
