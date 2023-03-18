@@ -1,4 +1,6 @@
 <?php
+
+include menu
    
   $name = $_POST['name'];
   $password = $_POST['password'];
@@ -19,7 +21,6 @@
   if($count['count'] > 0) {
     die ('Users must have a unique email.' . $count['count']);
   }
-  echo $type;
 
   $Uid_query = 'SELECT MAX(id) as count FROM users';
   $Uid_result = mysqli_query($myconnection, $Uid_query) or die('Query failed: ' . mysql_error());
@@ -36,6 +37,8 @@
     $newParent = 'INSERT INTO parents VALUES('.$Uid['count'].')';
     mysqli_query($myconnection, $newParent) or die('Query failed' . mysql_error());
   }
+
+  create_menu($Uid['count'], $type)
 
   mysqli_free_result($result);
   mysqli_free_result($Uid_result);

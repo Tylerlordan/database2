@@ -45,5 +45,7 @@
     }
 
     create_menu($user['id'], $usertype);
+
+    mysqli_close($myconnection);
   }
 ?>
