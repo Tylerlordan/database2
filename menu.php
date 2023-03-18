@@ -22,7 +22,7 @@ function create_menu($id, $usertype) {
         </tr>
         <tr bgcolor="#cccccc">
             <td>New Phone:</td>
-            <td align="left"><input type="text" name="new_phone" size="30" maxlength="10"/></td>
+            <td align="left"><input type="number" name="new_phone" size="30" maxlength="10"/></td>
         </tr>
         <tr bgcolor="#cccccc">
             <td>New Password:</td>
@@ -62,8 +62,13 @@ function create_menu($id, $usertype) {
         echo '<form action="join_group.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
+        <td align="center"><h2>Join Group</h2></td>
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Group ID:</td>
+            <td align="left"><input type="number" name="group_id" size="30" maxlength="10" required/></td>
+        </tr>
         <td colspan="2" align="center"><input type="submit" value="Join a Group"/></td>
         </tr>
         </table>
@@ -129,7 +134,7 @@ function create_menu($id, $usertype) {
         </tr>
         <tr bgcolor="#cccccc">
             <td>New Phone:</td>
-            <td align="left"><input type="text" name="new_phone" size="30" maxlength="10"/></td>
+            <td align="left"><input type="number" name="new_phone" size="30" maxlength="10"/></td>
         </tr>
         <tr bgcolor="#cccccc">
             <td>New Password:</td>

@@ -1,6 +1,6 @@
 <?php
 
-include menu
+include 'menu.php';
    
   $name = $_POST['name'];
   $password = $_POST['password'];
@@ -38,7 +38,7 @@ include menu
     mysqli_query($myconnection, $newParent) or die('Query failed' . mysql_error());
   }
 
-  create_menu($Uid['count'], $type)
+  create_menu($Uid['count'], $type);
 
   mysqli_free_result($result);
   mysqli_free_result($Uid_result);
