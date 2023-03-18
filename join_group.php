@@ -12,7 +12,7 @@
     $group_exists_query = 'SELECT COUNT(*) as count FROM groups WHERE group_id  = ' . "'$group_id'";
     $group_exists_result = mysqli_query($myconnection, $group_exists_query) or die ('Query failed: ' . mysql_error());
     $group_exists = mysqli_fetch_array($group_exists_result, MYSQLI_ASSOC);
-    if($group_exists["count"] === 0) {
+    if($group_exists['count'] == 0) {
         die("group '".$group_id."' not found.");
     }
 
