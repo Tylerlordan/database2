@@ -34,7 +34,7 @@
     $grade_req_upper = $grade_req['grade_req'] + 1;
 
     if($grade['grade'] === $grade_req['grade_req'] || $grade['grade'] === $grade_req_upper) {
-        $insert = 'INSERT INTO member_of VALUES ('.$user_id.', '.$group_id.')';
+        $insert = 'INSERT INTO member_of VALUES ('.$group_id.', '.$user_id.')';
         mysqli_query($myconnection, $insert) or die('Query failed: ' . mysql_error());
         echo("Joined group '$group_id'");
     }
