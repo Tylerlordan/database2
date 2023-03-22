@@ -93,7 +93,7 @@ function create_menu($id, $usertype) {
         <tr bgcolor="#cccccc">
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
-        <td colspan="2" align="center"><input type="submit" value="View Groups and Meetings"/></td>
+        <td colspan="2" align="center"><input type="submit" value="View Meeting Members"/></td>
         </tr>
         </table>
         </form>';
