@@ -2,6 +2,7 @@
 // Function for generating the html elements found in the main menu, 
 // changing the displayed elements based on the type of user that is signed in.
 function create_menu($id, $usertype) {
+    echo "<h1>User Menu</h1>";
     if($usertype === "student") {
         echo '<form action="update_account.php" method="post">
         <table border="0">     
@@ -50,8 +51,19 @@ function create_menu($id, $usertype) {
         echo '<form action="join_meeting.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
+        <td align="center"><h2>Join Meeting</h2></td>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>Leave meeting id empty to</p></td>
+        </tr>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>join all valid future meetings.</p></td>
+        </tr>
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Meeting ID:</td>
+            <td align="left"><input type="number" name="meeting_id" size="30" maxlength="10"/></td>
+        </tr>
         <td colspan="2" align="center"><input type="submit" value="Join a Meeting"/></td>
         </tr>
         </table>
@@ -88,11 +100,16 @@ function create_menu($id, $usertype) {
 
         echo "<br><br><br>";
 
-        echo '<form action="view_meeting_members.php" method="post">
+        echo '<form action="view_meeting_members.php" method="get">
         <table border="0">     
         <tr bgcolor="#cccccc">
+        <td align="center"><h2>View Members</h2></td>
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Meeting ID:</td>
+            <td align="left"><input type="number" name="meeting_id" size="30" maxlength="10" required/></td>
+        </tr>
         <td colspan="2" align="center"><input type="submit" value="View Meeting Members"/></td>
         </tr>
         </table>
@@ -150,6 +167,33 @@ function create_menu($id, $usertype) {
 
         echo "<br><br><br>";
 
+        echo '<form action="join_meeting.php" method="post">
+        <table border="0">     
+        <tr bgcolor="#cccccc">
+        <td align="center"><h2>Enroll Student</h2></td>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>Leave meeting id empty to</p></td>
+        </tr>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>join all valid future meetings.</p></td>
+        </tr>
+        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
+        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Meeting ID:</td>
+            <td align="left"><input type="number" name="meeting_id" size="30" maxlength="10"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Student email:</td>
+            <td align="left"><input type="text" name="student" size="30" maxlength="100" required/></td>
+        </tr>
+        <td colspan="2" align="center"><input type="submit" value="Enroll Student"/></td>
+        </tr>
+        </table>
+        </form>';
+
+        echo "<br><br><br>";
+
         echo '<form action="view_groups_meetings.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
@@ -187,6 +231,33 @@ function create_menu($id, $usertype) {
         echo "<br><br><br>";
     }
     elseif($usertype === "admin") {
+        echo '<form action="join_meeting.php" method="post">
+        <table border="0">     
+        <tr bgcolor="#cccccc">
+        <td align="center"><h2>Enroll Student</h2></td>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>Leave meeting id empty to</p></td>
+        </tr>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>join all valid future meetings.</p></td>
+        </tr>
+        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
+        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Meeting ID:</td>
+            <td align="left"><input type="number" name="meeting_id" size="30" maxlength="10"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Student email:</td>
+            <td align="left"><input type="text" name="student" size="30" maxlength="100" required/></td>
+        </tr>
+        <td colspan="2" align="center"><input type="submit" value="Enroll Student"/></td>
+        </tr>
+        </table>
+        </form>';
+
+        echo "<br><br><br>";
+
         echo '<form action="mod_meetings.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
