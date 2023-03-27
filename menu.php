@@ -244,23 +244,16 @@ function create_menu($id, $usertype) {
 
         echo "<br><br><br>";
 
-        echo '<form action="leave_child_meeting.php" method="post">
-        <table border="0">     
-        <tr bgcolor="#cccccc">
-        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
-        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
-        <td colspan="2" align="center"><input type="submit" value="Remove a Child from a Meeting"/></td>
-        </tr>
-        </table>
-        </form>';
-
-        echo "<br><br><br>";
-
         echo '<form action="claim_child.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
+        <td align="center"><h2>Claim Child</h2></td>
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Student email:</td>
+            <td align="left"><input type="text" name="student" size="30" maxlength="100" required/></td>
+        </tr>
         <td colspan="2" align="center"><input type="submit" value="Claim Child Account"/></td>
         </tr>
         </table>
