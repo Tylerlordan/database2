@@ -17,8 +17,7 @@
     $myconnection = mysqli_connect('localhost', 'root', '') or die('Could not connect: ' . mysqli_error());
     $mydb = mysqli_select_db($myconnection, 'db2') or die('Could not select database');
 
-    //$curr_week_day = date('l');
-    $curr_week_day = "Thursday";
+    $curr_week_day = date('l');
 
     $curr_date = date("Y-m-d");
 
@@ -36,6 +35,7 @@
                 die("User " . $student . " not found or is not a student.");
             }
             else $student_id = $is_student['s_id'];
+            mysqli_free_result($is_student_result);
         }
     }
     else if($user_type == "parent") {
@@ -49,6 +49,7 @@
                 die("User " . $student . " not found, is not a student or is not your child.");
             }
             else $student_id = $is_student['s_id'];
+            mysqli_free_result($is_child_result);
         }
     }
     
@@ -71,6 +72,7 @@
             $insert_result = mysqli_query($myconnection, $insert_query) or die('Query failed: ' . mysqli_error());
             displayMembers($meeting_id, $myconnection);
         }
+        mysqli_free_result($valid_meeting_result);
     } else {
         $find_meetings_query = "SELECT meeting_id
                                 FROM meetings as m1
@@ -88,6 +90,7 @@
             displayMembers($meeting_id, $myconnection);
             echo "<br><br><br>";
         }
+        mysqli_free_result($find_meetings_result);
             
     }
     

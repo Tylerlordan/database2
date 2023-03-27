@@ -91,8 +91,19 @@ function create_menu($id, $usertype) {
         echo '<form action="leave_meeting.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
+        <td align="center"><h2>Leave Meeting</h2></td>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>Leave meeting id empty to</p></td>
+        </tr>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>leave all valid future meetings.</p></td>
+        </tr>
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Meeting ID:</td>
+            <td align="left"><input type="number" name="meeting_id" size="30" maxlength="10"/></td>
+        </tr>
         <td colspan="2" align="center"><input type="submit" value="Leave a Meeting or All Meetings"/></td>
         </tr>
         </table>
@@ -194,6 +205,33 @@ function create_menu($id, $usertype) {
 
         echo "<br><br><br>";
 
+        echo '<form action="leave_meeting.php" method="post">
+        <table border="0">     
+        <tr bgcolor="#cccccc">
+        <td align="center"><h2>Leave Meeting</h2></td>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>Leave meeting id empty to</p></td>
+        </tr>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>leave all valid future meetings.</p></td>
+        </tr>
+        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
+        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Meeting ID:</td>
+            <td align="left"><input type="number" name="meeting_id" size="30" maxlength="10"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Student email:</td>
+            <td align="left"><input type="text" name="student" size="30" maxlength="100" required/></td>
+        </tr>
+        <td colspan="2" align="center"><input type="submit" value="Leave a Meeting or All Meetings"/></td>
+        </tr>
+        </table>
+        </form>';
+
+        echo "<br><br><br>";
+
         echo '<form action="view_groups_meetings.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
@@ -276,6 +314,25 @@ function create_menu($id, $usertype) {
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
         <td colspan="2" align="center"><input type="submit" value="Modify Materials Details"/></td>
+        </tr>
+        </table>
+        </form>';
+
+        echo "<br><br><br>";
+
+        echo '<form action="cancel_meetings.php" method="post">
+        <table border="0">     
+        <tr bgcolor="#cccccc">
+        <td align="center"><h2>Cancel Meetings</h2></td>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>Generates cancelation emails</p></td>
+        </tr>
+        <tr bgcolor="#aaaaff">
+            <td align="left"><p>for meetings with too few members.</p></td>
+        </tr>
+        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
+        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <td colspan="2" align="center"><input type="submit" value="Cancel Meetings"/></td>
         </tr>
         </table>
         </form>';
