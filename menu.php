@@ -299,8 +299,33 @@ function create_menu($id, $usertype) {
         echo '<form action="mod_meetings.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
+        <td align="center"><h2>Modify Meeting</h2></td>
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Meeting ID:</td>
+            <td align="left"><input type="number" name="meeting_id" size="30" maxlength="10" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New Name:</td>
+            <td align="left"><input type="text" name="new_name" size="30" maxlength="200"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New Announcement:</td>
+            <td align="left"><input type="textarea" name="new_announcement" size="30" maxlength="200"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New Date:</td>
+            <td align="left"><input type="date" name="new_date"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New Start Time:</td>
+            <td align="left"><input type="time" name="new_start"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New End Time:</td>
+            <td align="left"><input type="time" name="new_end"/></td>
+        </tr>
         <td colspan="2" align="center"><input type="submit" value="Modify Meeting Details"/></td>
         </tr>
         </table>
@@ -311,9 +336,42 @@ function create_menu($id, $usertype) {
         echo '<form action="mod_materials.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
+        <td align="center"><h2>Modify Material</h2></td>
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
-        <td colspan="2" align="center"><input type="submit" value="Modify Materials Details"/></td>
+        <tr bgcolor="#cccccc">
+            <td>Material ID:</td>
+            <td align="left"><input type="number" name="material" size="30" maxlength="10" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New Meeting ID:</td>
+            <td align="left"><input type="number" name="new_meeting" size="30" maxlength="10"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New Title:</td>
+            <td align="left"><input type="text" name="new_name" size="30" maxlength="200"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New Author:</td>
+            <td align="left"><input type="text" name="new_author" size="30" maxlength="200"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New Type:</td>
+            <td align="left"><input type="text" name="new_type" size="30" maxlength="200"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New URL:</td>
+            <td align="left"><input type="text" name="new_url" size="30" maxlength="200"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New Notes:</td>
+            <td align="left"><input type="textarea" name="new_notes" size="30" maxlength="200"/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>New Date:</td>
+            <td align="left"><input type="date" name="new_date"/></td>
+        </tr>
+        <td colspan="2" align="center"><input type="submit" value="Modify Material Details"/></td>
         </tr>
         </table>
         </form>';
