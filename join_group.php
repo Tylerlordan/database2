@@ -29,11 +29,11 @@
 
     $grade_query = 'SELECT grade FROM students WHERE student_id = '."$user_id";
     $grade_result = mysqli_query($myconnection, $grade_query) or die ('Query failed: ' . mysql_error());
-    $grade = mysqli_fetch_array($grade_result, MYSQLI_ASSOC);
+    $grade = mysqli_fetch_array($grade_result, MYSQLI_ASSOC)['grade'];
 
     $grade_req_upper = $grade_req['grade_req'] + 1;
 
-    if($grade['grade'] === $grade_req['grade_req'] || $grade['grade'] === $grade_req_upper) {
+    if($grade == $grade_req['grade_req'] || $grade == $grade_req_upper) {
         $insert = 'INSERT INTO member_of VALUES ('.$group_id.', '.$user_id.')';
         mysqli_query($myconnection, $insert) or die('Query failed: ' . mysql_error());
         echo("Joined group '$group_id'");

@@ -61,9 +61,7 @@ while ($group_row = mysqli_fetch_array($groups_result, MYSQLI_ASSOC)) {
 }
 echo "</table>";
 
-
-mysqli_free_result($meetings_result);
-mysqli_free_result($groups_result);
+create_menu($userId, $userType);
 
 mysqli_close($myconnection);
 

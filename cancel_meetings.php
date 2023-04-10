@@ -6,9 +6,7 @@
     $user_type = $_POST['user_type'];
     date_default_timezone_set('America/New_York');
 
-    //testing change later
-    //$day_of_week = date("l");
-    $day_of_week = "Friday";
+    $day_of_week = date("l");
 
     if($day_of_week != "Friday") {
         die("You may only cancel meetings on Friday");

@@ -2,6 +2,7 @@
 // Function for generating the html elements found in the main menu, 
 // changing the displayed elements based on the type of user that is signed in.
 function create_menu($id, $usertype) {
+    echo "<a href='start_page.html'>Log out</a>";
     echo "<h1>User Menu</h1>";
     if($usertype === "student") {
         echo '<form action="update_account.php" method="post">
@@ -42,6 +43,18 @@ function create_menu($id, $usertype) {
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
         <td colspan="2" align="center"><input type="submit" value="View Groups and Meetings"/></td>
+        </tr>
+        </table>
+        </form>';
+
+        echo "<br><br><br>";
+
+        echo '<form action="view_materials.php" method="post">
+        <table border="0">     
+        <tr bgcolor="#cccccc">
+        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
+        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <td colspan="2" align="center"><input type="submit" value="View Materials"/></td>
         </tr>
         </table>
         </form>';
@@ -105,6 +118,27 @@ function create_menu($id, $usertype) {
             <td align="left"><input type="number" name="meeting_id" size="30" maxlength="10"/></td>
         </tr>
         <td colspan="2" align="center"><input type="submit" value="Leave a Meeting or All Meetings"/></td>
+        </tr>
+        </table>
+        </form>';
+
+        echo "<br><br><br>";
+
+        echo '<form action="student_submission.php" method="post">
+        <table border="0">     
+        <tr bgcolor="#cccccc">
+        <td align="center"><h2>Submit Assignment</h2></td>
+        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
+        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Assignment ID:</td>
+            <td align="left"><input type="number" name="assignment_id" size="30" maxlength="10" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Contents:</td>
+            <td align="left"><input type="textarea" name="contents" size="30" maxlength="200" required/></td>
+        </tr>
+        <td colspan="2" align="center"><input type="submit" value="Submit Assignment"/></td>
         </tr>
         </table>
         </form>';
@@ -371,6 +405,80 @@ function create_menu($id, $usertype) {
 
         echo "<br><br><br>";
 
+        echo '<form action="post_materials.php" method="post">
+        <table border="0">     
+        <tr bgcolor="#cccccc">
+        <td align="center"><h2>Post Material</h2></td>
+        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
+        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Meeting ID:</td>
+            <td align="left"><input type="number" name="meeting_id" size="30" maxlength="10" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Title:</td>
+            <td align="left"><input type="text" name="name" size="30" maxlength="200" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Author:</td>
+            <td align="left"><input type="text" name="author" size="30" maxlength="200" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Type:</td>
+            <td align="left"><input type="text" name="type" size="30" maxlength="200" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>URL:</td>
+            <td align="left"><input type="text" name="url" size="30" maxlength="200" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Notes:</td>
+            <td align="left"><input type="textarea" name="notes" size="30" maxlength="200" required/></td>
+        </tr>
+        <td colspan="2" align="center"><input type="submit" value="Post Material"/></td>
+        </tr>
+        </table>
+        </form>';
+
+        echo "<br><br><br>";
+
+        echo '<form action="create_meeting.php" method="post">
+        <table border="0">     
+        <tr bgcolor="#cccccc">
+        <td align="center"><h2>Create Meeting</h2></td>
+        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
+        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Group ID:</td>
+            <td align="left"><input type="number" name="group" size="30" maxlength="10" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Name:</td>
+            <td align="left"><input type="text" name="name" size="30" maxlength="200" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Date:</td>
+            <td align="left"><input type="date" name="date" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Start Time:</td>
+            <td align="left"><input type="time" name="start" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>End Time:</td>
+            <td align="left"><input type="time" name="end" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Announcement:</td>
+            <td align="left"><input type="text" name="announcement" size="30" maxlength="200" required/></td>
+        </tr>
+        <td colspan="2" align="center"><input type="submit" value="Create Meeting"/></td>
+        </tr>
+        </table>
+        </form>';
+
+        echo "<br><br><br>";
+
         echo '<form action="cancel_meetings.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
@@ -402,12 +510,62 @@ function create_menu($id, $usertype) {
 
         echo "<br><br><br>";
 
-        echo '<form action="post_materials.php" method="post">
+        echo '<form action="view_assignments_and_submissions.php" method="post">
         <table border="0">     
         <tr bgcolor="#cccccc">
         <input type="number" name="user_id" value ="'.$id.'" hidden></input>
         <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
-        <td colspan="2" align="center"><input type="submit" value="Post Study Materials"/></td>
+        <td colspan="2" align="center"><input type="submit" value="View Assignments and Submissions"/></td>
+        </tr>
+        </table>
+        </form>';
+
+        echo "<br><br><br>";
+
+        echo '<form action="create_assignment.php" method="post">
+        <table border="0">     
+        <tr bgcolor="#cccccc">
+        <td align="center"><h2>Create Assignment</h2></td>
+        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
+        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Group ID:</td>
+            <td align="left"><input type="number" name="group_id" size="30" maxlength="10" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Name:</td>
+            <td align="left"><input type="text" name="name" size="30" maxlength="200" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Description:</td>
+            <td align="left"><input type="text" name="description" size="30" maxlength="200" required/></td>
+        </tr>
+        <td colspan="2" align="center"><input type="submit" value="Create Assignment"/></td>
+        </tr>
+        </table>
+        </form>';
+
+        echo "<br><br><br>";
+
+        echo '<form action="submit_score.php" method="post">
+        <table border="0">     
+        <tr bgcolor="#cccccc">
+        <td align="center"><h2>Submit Score</h2></td>
+        <input type="number" name="user_id" value ="'.$id.'" hidden></input>
+        <input type="text" name="user_type" value ="'.$usertype.'" hidden></input>
+        <tr bgcolor="#cccccc">
+            <td>Assignment ID:</td>
+            <td align="left"><input type="number" name="assignment_id" size="30" maxlength="10" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Student ID:</td>
+            <td align="left"><input type="number" name="student_id" size="30" maxlength="10" required/></td>
+        </tr>
+        <tr bgcolor="#cccccc">
+            <td>Score:</td>
+            <td align="left"><input type="number" name="score" size="30" maxlength="10" min="0" max="100" required/></td>
+        </tr>
+        <td colspan="2" align="center"><input type="submit" value="Submit Score"/></td>
         </tr>
         </table>
         </form>';

@@ -22,7 +22,7 @@ include 'menu.php';
     die ('Users must have a unique email.' . $count['count']);
   }
 
-  $Uid_query = 'SELECT MAX(id) as count FROM users';
+  $Uid_query = 'SELECT COALESCE(MAX(id), 0) as count FROM users';
   $Uid_result = mysqli_query($myconnection, $Uid_query) or die('Query failed: ' . mysql_error());
   $Uid = mysqli_fetch_array($Uid_result, MYSQLI_ASSOC);
   $Uid['count'] += 1;

@@ -17,10 +17,10 @@
 
     if($enrolled_in["count"] > 0) {
         displayMembers($meeting_id, $myconnection);
+    } else {
+        echo "You are not enrolled in meeting $meeting_id";
     }
-    else echo "You must be enrolled in this meeting to view its members.";
-    echo "<br><br><br>";
-
+    
     
     create_menu($user_id, $user_type);
 

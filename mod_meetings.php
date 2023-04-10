@@ -59,10 +59,11 @@
             $new_time_query = "SELECT time_slot_id FROM time_slot WHERE day_of_the_week = '".$day_of_week."' AND TIME(start_time) = TIME '".$start_time."' AND TIME(end_time) = TIME '".$end_time."'";
             $new_time_result = mysqli_query($myconnection, $new_time_query) or die('Query failed: ' . mysqli_error());
             $new_time = mysqli_fetch_array($new_time_result, MYSQLI_ASSOC);
+            
 
             if($new_time == NULL) {
                 // Get the new id
-                $new_id_query = "SELECT MAX(time_slot_id) as max FROM time_slot";
+                $new_id_query = "SELECT COALESCE(MAX(time_slot_id), 0) as max FROM time_slot";
                 $new_id_result = mysqli_query($myconnection, $new_id_query) or die('Query failed: ' . mysqli_error());
                 $new_id = mysqli_fetch_array($new_id_result, MYSQLI_ASSOC);
                 $time_id = $new_id["max"] + 1;
@@ -70,12 +71,12 @@
                 // Insert new time_slot
                 $insert_time_query = "INSERT INTO time_slot VALUES($time_id, '".$day_of_week."', TIME '".$start_time."', TIME '".$end_time."')";
                 mysqli_query($myconnection, $insert_time_query) or die('Query failed: ' . mysqli_error());
-
+            } else {
+                $time_id = $new_time["time_slot_id"];
+            }
                 // Update time_slot in meeting
                 $update_query = "UPDATE meetings SET time_slot_id = $time_id WHERE meeting_id = $meeting";
                 mysqli_query($myconnection, $update_query) or die('Query failed: ' . mysqli_error());
-            }
-
         }
     }
 

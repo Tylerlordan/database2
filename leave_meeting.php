@@ -55,13 +55,12 @@
             echo "Successfully left meeting $meeting_id";
         }
     } else { // Leaving all meetings
-            $delete_query = "DELETE FROM enroll where student_id = $student_id 
+            $delete_query = "DELETE FROM enroll WHERE student_id = $student_id 
                                 AND meeting_id IN (
                                     SELECT meeting_id
-                                    FROM meetings, time_slot 
+                                    FROM meetings, time_slot
                                     WHERE DATE(meetings.date) >= DATE '".$curr_date."' 
-                                        AND m1.time_slot_id = t1.time_slot_id
-                                        AND TIME(time_slot.start_time) > TIME '".$curr_time."'";
+                                        AND meetings.time_slot_id = time_slot.time_slot_id)";
             $delete_result = mysqli_query($myconnection, $delete_query) or die('Query failed: ' . mysqli_error());
             echo "Successfully left all future meetings.";
             echo "<br><br><br>";
